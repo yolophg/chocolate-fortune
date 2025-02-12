@@ -17,7 +17,7 @@ A fun and interactive web application that generates fortunes through a chocolat
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Animation**: Framer Motion
-- **AI Integration**: Google PaLM API
+- **AI Integration**: Google Generative AI(Gemini)
 - **Internationalization**: i18next
 
 ## 📁 Project Structure
@@ -56,7 +56,7 @@ yarn install
 3. **Set up environment variables**
 Create a `.env.local` file:
 ```env
-GOOGLE_API_KEY=your_palm_api_key
+GOOGLE_API_KEY=your_google_api_key
 ```
 
 4. **Run the development server**
@@ -80,7 +80,7 @@ yarn dev
 - SEO-optimized metadata for each language
 
 ### AI Integration
-- Dynamic fortune generation using Google PaLM
+- Dynamic fortune generation using Google Generative AI(Gemini)
 - Contextual responses based on chocolate type
 - Natural language processing
 
