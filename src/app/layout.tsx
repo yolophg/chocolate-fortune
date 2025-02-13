@@ -3,10 +3,10 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chocopick.space"),
-  title: "초콜릿 운세 뽑기",
+  title: "초콜릿 운세 뽑기🍫",
   description: "맛있는 초콜릿을 뽑아 오늘의 운세를 확인해보세요!",
   openGraph: {
-    title: "초콜릿 운세 뽑기",
+    title: "초콜릿 운세 뽑기🍫",
     description: "맛있는 초콜릿을 뽑아 오늘의 운세를 확인해보세요!",
     type: "website",
     url: "https://chocopick.space",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "초콜릿 운세 뽑기",
+    title: "초콜릿 운세 뽑기🍫",
     description: "맛있는 초콜릿을 뽑아 오늘의 운세를 확인해보세요!",
     images: ["/images/og-image.png"],
   },

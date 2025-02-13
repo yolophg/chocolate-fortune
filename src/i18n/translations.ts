@@ -17,7 +17,7 @@ export const translations = {
     },
     share: {
       title: "공유하기",
-      text: "나의 초콜릿: {{chocolateName}}\n운세: {{fortune}}",
+      text: "나의 초콜릿🍫: {{chocolateName}}\n운세🍀: {{fortune}}",
     },
     language: {
       ko: "한국어",
@@ -55,7 +55,7 @@ export const translations = {
     },
     share: {
       title: "Share via",
-      text: "My chocolate: {{chocolateName}}\nFortune: {{fortune}}",
+      text: "My chocolate🍫: {{chocolateName}}\nFortune🍀: {{fortune}}",
     },
     language: {
       ko: "Korean",

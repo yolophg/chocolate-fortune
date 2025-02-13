@@ -12,6 +12,40 @@ interface ResultPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
+export async function generateMetadata({ params }: ResultPageProps) {
+  const { lang, id } = await params;
+  const chocolate = chocolates.find((c) => c.id === id);
+
+  if (!chocolate) {
+    return {};
+  }
+
+  const title = lang === "en" ? chocolate.name.en : chocolate.name.ko;
+  const description = t(lang as "ko" | "en", "result.shared");
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: chocolate.image,
+          width: 800,
+          height: 800,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [chocolate.image],
+    },
+  };
+}
+
 export default async function ResultPage({ params }: ResultPageProps) {
   const resolvedParams = await params;
   const { lang, id } = resolvedParams;
