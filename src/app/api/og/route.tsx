@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const chocolateName = searchParams.get("name") || "";
   const fortune = searchParams.get("fortune") || "";
-  const lang = searchParams.get("lang") || "kr";
+  const lang = searchParams.get("lang") || "ko";
   const imageUrl = searchParams.get("image") || "";
 
   return new ImageResponse(

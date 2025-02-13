@@ -1,16 +1,21 @@
 import { Suspense } from "react";
 import ClientPage from "@/components/ClientPage";
 
-export function generateStaticParams() {
-  return [{ lang: "kr" }, { lang: "en" }];
+interface PageProps {
+  params: { lang: string };
+  searchParams: { id?: string; fortune?: string };
 }
 
-export default async function Page({ params }: { params: { lang: string } }) {
-  const { lang } = await params;
+export function generateStaticParams() {
+  return [{ lang: "ko" }, { lang: "en" }];
+}
 
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ClientPage lang={lang} />
-    </Suspense>
-  );
+export default async function Page({
+  params: paramsPromise,
+  searchParams: searchParamsPromise,
+}: PageProps) {
+  const params = await paramsPromise;
+  const searchParams = await searchParamsPromise;
+
+  return <ClientPage lang={params.lang} searchParams={searchParams} />;
 }

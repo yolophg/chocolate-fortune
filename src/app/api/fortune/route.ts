@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
     const prompt =
-      lang === "kr"
+      lang === "ko"
         ? `다음 초콜릿의 특징을 바탕으로 오늘의 일상 운세 메시지를 작성해주세요:
          초콜릿: "${chocolate.name.ko}"
          특징: "${chocolate.description.ko}"
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error:
-          lang === "kr"
+          lang === "ko"
             ? "운세 생성 중 오류가 발생했습니다."
             : "Failed to generate fortune.",
       },

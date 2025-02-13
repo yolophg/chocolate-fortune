@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import LanguageSelector from "@/components/LanguageSelector";
 
 export const metadata: Metadata = {
   title: "초콜릿 운세 뽑기",
@@ -14,10 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body>
-        <LanguageSelector />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

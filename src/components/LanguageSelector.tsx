@@ -1,26 +1,30 @@
 "use client";
 
+import { t } from "@/i18n/translations";
 import { useRouter, usePathname } from "next/navigation";
 
-export default function LanguageSelector() {
+interface Props {
+  lang: "ko" | "en";
+}
+
+export default function LanguageSelector({ lang }: Props) {
   const router = useRouter();
   const pathname = usePathname();
-  const currentLang = pathname.split("/")[1];
 
-  const handleLanguageChange = (lang: string) => {
+  const handleLanguageChange = (newLang: string) => {
     const path = pathname.split("/").slice(2).join("/");
-    router.push(`/${lang}${path ? `/${path}` : ""}`);
+    router.push(`/${newLang}${path ? `/${path}` : ""}`);
   };
 
   return (
-    <div className='absolute top-4 right-4'>
+    <div className='relative w-full pt-4 px-4 flex justify-end z-50'>
       <select
         onChange={(e) => handleLanguageChange(e.target.value)}
-        value={currentLang}
-        className='bg-[#8D6E63] text-white px-3 py-1 rounded-md'
+        value={lang}
+        className='bg-[#A67B5B] text-white px-3 py-1 rounded-md font-content'
       >
-        <option value='kr'>한국어</option>
-        <option value='en'>English</option>
+        <option value='ko'>{t(lang, "language.ko")}</option>
+        <option value='en'>{t(lang, "language.en")}</option>
       </select>
     </div>
   );

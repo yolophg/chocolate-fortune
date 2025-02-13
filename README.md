@@ -91,8 +91,8 @@ Edit `src/i18n/config.ts` to modify language settings:
 ```typescript
 export const i18nConfig = {
   defaultNS: "common",
-  fallbackLng: "kr",
-  supportedLngs: ["kr", "en"]
+  fallbackLng: "ko",
+  supportedLngs: ["ko", "en"]
 }
 ```
 

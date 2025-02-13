@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Do+Hyeon&family=Poor+Story&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,4 +20,19 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* custom font classes */
+@layer utilities {
+  .font-title-en {
+    font-family: "Do Hyeon", serif;
+  }
+  
+  .font-title-ko {
+    font-family: "Do Hyeon", serif;
+  }
+  
+  .font-content {
+    font-family: "Poor Story", serif;
+  }
 }

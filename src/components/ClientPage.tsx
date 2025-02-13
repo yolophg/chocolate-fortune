@@ -1,48 +1,74 @@
 "use client";
 
 import { useState } from "react";
+import { t } from "@/i18n/translations";
 import ChocolateGacha from "@/components/ChocolateGacha";
 import FortuneResult from "@/components/FortuneResult";
 import type { FortuneResult as FortuneResultType } from "@/types/chocolate";
 import Footer from "./Footer";
 import LanguageSelector from "./LanguageSelector";
+import Description from "./Description";
 
 interface Props {
-  lang: string;
+  lang: "ko" | "en";
+  searchParams: {
+    id?: string;
+    fortune?: string;
+  };
 }
 
-export default function ClientPage({ lang }: Props) {
-  const [result, setResult] = useState<FortuneResultType | null>(null);
+export default function ClientPage({ lang, searchParams }: Props) {
+  const [result, setResult] = useState<FortuneResultType | null>(() => {
+    if (searchParams?.id && searchParams?.fortune) {
+      const chocolate = chocolates.find((c) => c.id === searchParams.id);
+      if (chocolate) {
+        return {
+          chocolate,
+          fortune: decodeURIComponent(searchParams.fortune),
+        };
+      }
+    }
+    return null;
+  });
   const [isSpinning, setIsSpinning] = useState(false);
 
   return (
-    <main className='relative min-h-screen bg-[#F5E1DA] p-4'>
-      <LanguageSelector />
-      <div className='pb-16 flex items-center justify-center min-h-[calc(100vh-80px)]'>
-        <div className='max-w-md w-full mx-auto bg-[#D7CCC8] rounded-2xl shadow-xl p-6 border-4 border-[#8D6E63]'>
-          <h1 className='text-3xl sm:text-4xl font-bold text-[#4E342E] text-center mb-6 sm:mb-8 drop-shadow-lg'>
-            {lang === "en" ? "Chocolate Fortune Gacha" : "초콜릿 운세 뽑기"}
-          </h1>
+    <div className='flex flex-col min-h-screen bg-[#FFF5E6]'>
+      <LanguageSelector lang={lang} />
 
-          <div className='bg-[#4E342E] rounded-xl p-4 shadow-inner'>
-            {!result ? (
-              <ChocolateGacha
-                isSpinning={isSpinning}
-                setIsSpinning={setIsSpinning}
-                setResult={setResult}
-                lang={lang}
-              />
-            ) : (
-              <FortuneResult
-                result={result}
-                onReset={() => setResult(null)}
-                lang={lang}
-              />
-            )}
+      <main className='flex-1 p-4 overflow-x-hidden flex items-center justify-center'>
+        <div className='w-full max-w-md'>
+          <div className='bg-[#E6D5C4] rounded-2xl shadow-xl p-6 border-4 border-[#A67B5B]'>
+            <h1
+              className={`text-2xl sm:text-3xl font-bold text-[#654321] text-center mb-2 sm:mb-4 drop-shadow-lg
+              ${lang === "en" ? "font-title-en" : "font-title-ko"}`}
+            >
+              {t(lang, "title")}
+            </h1>
+
+            <Description lang={lang} />
+
+            <div className='bg-[#654321] rounded-xl p-4 shadow-inner'>
+              {!result ? (
+                <ChocolateGacha
+                  isSpinning={isSpinning}
+                  setIsSpinning={setIsSpinning}
+                  setResult={setResult}
+                  lang={lang}
+                />
+              ) : (
+                <FortuneResult
+                  result={result}
+                  onReset={() => setResult(null)}
+                  lang={lang}
+                />
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </main>
+
       <Footer />
-    </main>
+    </div>
   );
 }
