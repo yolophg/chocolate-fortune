@@ -1,21 +1,28 @@
-import { Suspense } from "react";
 import ClientPage from "@/components/ClientPage";
 
+type LangType = "ko" | "en";
+
 interface PageProps {
-  params: { lang: string };
-  searchParams: { id?: string; fortune?: string };
+  params: Promise<{ lang: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-export function generateStaticParams() {
-  return [{ lang: "ko" }, { lang: "en" }];
+function isValidLang(lang: string): lang is LangType {
+  return ["ko", "en"].includes(lang);
 }
 
-export default async function Page({
-  params: paramsPromise,
-  searchParams: searchParamsPromise,
-}: PageProps) {
-  const params = await paramsPromise;
-  const searchParams = await searchParamsPromise;
+export default async function Page({ params, searchParams }: PageProps) {
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
 
-  return <ClientPage lang={params.lang} searchParams={searchParams} />;
+  if (!isValidLang(resolvedParams.lang)) {
+    throw new Error("Invalid language");
+  }
+
+  return (
+    <ClientPage
+      lang={resolvedParams.lang}
+      searchParams={resolvedSearchParams}
+    />
+  );
 }

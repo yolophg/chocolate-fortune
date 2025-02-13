@@ -15,42 +15,46 @@ interface Props {
 export default function FortuneResult({ result, onReset, lang }: Props) {
   const [showShareModal, setShowShareModal] = useState(false);
 
-  const handleShare = async () => {
-    const shareUrl = `${window.location.origin}/${lang}?id=${
-      result.chocolate.id
-    }&fortune=${encodeURIComponent(result.fortune)}`;
+  const handleShare = () => {
+    void (async () => {
+      const shareUrl = `${window.location.origin}/${lang}?id=${
+        result.chocolate.id
+      }&fortune=${encodeURIComponent(result.fortune)}`;
 
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: t(lang, "fortune.shareTitle"),
-          text: t(lang, "share.text", {
-            chocolateName: result.chocolate.name[lang],
-            fortune: result.fortune,
-          }),
-          url: shareUrl,
-        });
-      } catch (error) {
-        console.log("Error sharing:", error);
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: t(lang, "fortune.shareTitle"),
+            text: t(lang, "share.text", {
+              chocolateName: result.chocolate.name[lang],
+              fortune: result.fortune,
+            }),
+            url: shareUrl,
+          });
+        } catch (error) {
+          console.log("Error sharing:", error);
+          setShowShareModal(true);
+        }
+      } else {
         setShowShareModal(true);
       }
-    } else {
-      setShowShareModal(true);
-    }
+    })();
   };
 
-  const handleCopyLink = async () => {
-    const shareUrl = `${window.location.origin}/${lang}?id=${
-      result.chocolate.id
-    }&fortune=${encodeURIComponent(result.fortune)}`;
+  const handleCopyLink = () => {
+    void (async () => {
+      const shareUrl = `${window.location.origin}/${lang}?id=${
+        result.chocolate.id
+      }&fortune=${encodeURIComponent(result.fortune)}`;
 
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      alert(t(lang, "alert.copySuccess"));
-    } catch (error) {
-      console.error("Failed to copy:", error);
-      alert(t(lang, "alert.copyError"));
-    }
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        alert(t(lang, "alert.copySuccess"));
+      } catch (error) {
+        console.error("Failed to copy:", error);
+        alert(t(lang, "alert.copyError"));
+      }
+    })();
   };
 
   const ShareButtons = () => {

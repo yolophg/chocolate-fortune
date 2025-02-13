@@ -2,9 +2,19 @@ import { NextResponse } from "next/server";
 import genAI from "@/utils/gemini";
 import { chocolates } from "@/data/chocolates";
 
+interface FortuneRequest {
+  chocolateId: string;
+  lang: "ko" | "en";
+}
+
 export async function POST(request: Request) {
+  let lang: "ko" | "en" = "ko";
+
   try {
-    const { chocolateId, lang } = await request.json();
+    const body = (await request.json()) as FortuneRequest;
+    const { chocolateId, lang: requestLang } = body;
+    lang = requestLang;
+
     const chocolate = chocolates.find((c) => c.id === chocolateId);
     if (!chocolate) throw new Error("Chocolate not found");
 
@@ -34,8 +44,7 @@ export async function POST(request: Request) {
          - Maintain a positive tone`;
 
     const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const fortune = response.text();
+    const fortune = result.response.text();
 
     return NextResponse.json({ fortune, chocolate });
   } catch (error) {

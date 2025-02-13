@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { t } from "@/i18n/translations";
+import { chocolates } from "@/data/chocolates";
 import ChocolateGacha from "@/components/ChocolateGacha";
 import FortuneResult from "@/components/FortuneResult";
 import type { FortuneResult as FortuneResultType } from "@/types/chocolate";
@@ -21,7 +22,12 @@ export default function ClientPage({ lang, searchParams }: Props) {
   const [result, setResult] = useState<FortuneResultType | null>(() => {
     if (searchParams?.id && searchParams?.fortune) {
       const chocolate = chocolates.find((c) => c.id === searchParams.id);
-      if (chocolate) {
+      if (
+        chocolate &&
+        (chocolate.type === "milk" ||
+          chocolate.type === "dark" ||
+          chocolate.type === "white")
+      ) {
         return {
           chocolate,
           fortune: decodeURIComponent(searchParams.fortune),

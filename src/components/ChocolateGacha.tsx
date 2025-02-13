@@ -14,16 +14,22 @@ interface Props {
   lang: "ko" | "en";
 }
 
+interface FortuneResponse {
+  fortune: string;
+  chocolate: (typeof chocolates)[0];
+  error?: string;
+}
+
 export default function ChocolateGacha({
   isSpinning,
   setIsSpinning,
   setResult,
   lang,
 }: Props) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedChocolate, setSelectedChocolate] = useState<
-    (typeof chocolates)[0] | null
-  >(null);
+  const [, setCurrentIndex] = useState(0);
+  const [, setSelectedChocolate] = useState<(typeof chocolates)[0] | null>(
+    null
+  );
   const [isInitial, setIsInitial] = useState(true);
 
   const handleGacha = async () => {
@@ -45,8 +51,8 @@ export default function ChocolateGacha({
         body: JSON.stringify({ chocolateId: randomChocolate.id, lang }),
       });
 
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error);
+      const data = (await response.json()) as FortuneResponse;
+      if (!response.ok) throw new Error(data.error || "Unknown error");
 
       // enhanced rotation effect sequence
       setTimeout(() => {
@@ -208,7 +214,7 @@ export default function ChocolateGacha({
           },
         }}
         className='relative w-16 sm:w-24 h-[100px] sm:h-[120px] disabled:opacity-50 group select-none'
-        onClick={handleGacha}
+        onClick={() => void handleGacha()}
         disabled={isSpinning}
       >
         {/* pulsing arrow indicator */}

@@ -1,4 +1,20 @@
-export const chocolates = [
+type ChocolateType = "milk" | "dark" | "white";
+
+interface Chocolate {
+  id: string;
+  type: ChocolateType;
+  name: {
+    ko: string;
+    en: string;
+  };
+  description: {
+    ko: string;
+    en: string;
+  };
+  image: string;
+}
+
+export const chocolates: Chocolate[] = [
   {
     id: "goldenHazelnut", // from Ferrero Rocher
     type: "milk",

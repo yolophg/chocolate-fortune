@@ -1,12 +1,10 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  output: 'export',  // export static HTML
-  images: {
-    unoptimized: true,
+const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: false,
   },
-  basePath: "",
-  assetPrefix: "",
+  typescript: {
+    ignoreBuildErrors: false,
+  },
 };
 
 export default nextConfig;
