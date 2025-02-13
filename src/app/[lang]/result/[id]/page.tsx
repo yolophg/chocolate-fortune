@@ -32,8 +32,6 @@ export async function generateMetadata({ params }: ResultPageProps) {
       images: [
         {
           url: chocolate.image,
-          width: 800,
-          height: 800,
         },
       ],
     },
@@ -71,8 +69,6 @@ export default async function ResultPage({ params }: ResultPageProps) {
         </h2>
         <p className='text-base sm:text-lg font-content mb-4 sm:mb-6 text-[#A67B5B] text-center whitespace-pre-line'>
           {t(lang as "ko" | "en", "result.shared")}
-          {"\n\n"}
-          {`https://chocopick.space/${lang}/result/${id}`}
         </p>
         <div className='flex justify-center'>
           <Link

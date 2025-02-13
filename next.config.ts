@@ -1,4 +1,7 @@
 const nextConfig = {
+  images: {
+    domains: ["chocopick.space"],
+  },
   eslint: {
     ignoreDuringBuilds: false,
   },

@@ -33,9 +33,6 @@ export const translations = {
     error: {
       fortune: "운세 생성 중 오류가 발생했습니다.",
     },
-    fortune: {
-      shareTitle: "초콜릿 운세 결과",
-    },
     result: {
       shared: "나만의 초콜릿 운세를 뽑아보세요!",
     },

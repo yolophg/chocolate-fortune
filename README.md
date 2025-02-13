@@ -19,6 +19,8 @@ A fun and interactive web application that generates fortunes through a chocolat
 - **Animation**: Framer Motion
 - **AI Integration**: Google Generative AI(Gemini)
 - **Internationalization**: i18next
+- **Font**: Google Fonts (Do Hyeon, Poor Story)
+- **Deployment**: Vercel
 
 ## 📁 Project Structure
 
@@ -26,20 +28,24 @@ A fun and interactive web application that generates fortunes through a chocolat
 src/
 ├── app/               # Next.js app router
 │   ├── [lang]/       # Dynamic language routes
+│   │   └── result/   # Result pages
+│   ├── api/          # API routes
 │   └── layout.tsx    # Root layout
 │   └── page.tsx      # Root page
 ├── components/        # React components
 │   ├── ChocolateGacha.tsx    # Main gacha machine
 │   ├── ClientPage.tsx        # Client-side page
 │   ├── FortuneResult.tsx     # Fortune display
+│   ├── Description.tsx       # Page description
+│   ├── Footer.tsx            # Footer component
 │   └── LanguageSelector.tsx  # Language switcher
 ├── i18n/             # Internationalization
 ├── types/            # TypeScript definitions
 ├── utils/            # Utility functions
-└── data/             # Static data
+└── data/            # Static data (chocolates)
 ```
 
-## 🚀 Getting Started
+## 🛠 Getting Started
 
 1. **Clone the repository**
 ```bash
@@ -69,33 +75,25 @@ yarn dev
 ## 🌟 Key Features Explained
 
 ### Gacha Machine
-- Smooth spinning animation
+- Smooth spinning animation with Framer Motion
 - Interactive lever mechanism
 - Dynamic chocolate selection
 - Realistic slot machine effects
+- Progressive spinning speed changes
 
 ### Internationalization
-- Seamless language switching
+- Seamless language switching (한국어/English)
 - Full support for Korean and English
 - SEO-optimized metadata for each language
+- Type-safe translations
 
 ### AI Integration
 - Dynamic fortune generation using Google Generative AI(Gemini)
 - Contextual responses based on chocolate type
-- Natural language processing
-
-## 🔧 Configuration
-
-### Language Settings
-Edit `src/i18n/config.ts` to modify language settings:
-```typescript
-export const i18nConfig = {
-  defaultNS: "common",
-  fallbackLng: "ko",
-  supportedLngs: ["ko", "en"]
-}
-```
+- Multi-language fortune generation
+- Personalized fortune messages
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please feel free to submit a PR.
+
