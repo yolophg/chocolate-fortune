@@ -14,9 +14,7 @@ interface Props {
 export default function FortuneResult({ result, onReset, lang }: Props) {
   const handleShare = () => {
     void (async () => {
-      const shareUrl = `${window.location.origin}/${lang}?id=${
-        result.chocolate.id
-      }&fortune=${encodeURIComponent(result.fortune)}`;
+      const shareUrl = `${window.location.origin}/${lang}/result/${result.chocolate.id}`;
 
       try {
         await navigator.share({

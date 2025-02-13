@@ -43,7 +43,7 @@ export async function generateMetadata({
       url: `${baseUrl}/${resolvedParams.lang}`,
       images: [
         {
-          url: `${baseUrl}/public/og-image.png`,
+          url: "/images/og-image.png",
           width: 1200,
           height: 630,
           alt: isEn ? "Chocolate Fortune" : "초콜릿 운세 뽑기",
@@ -57,7 +57,7 @@ export async function generateMetadata({
       description: isEn
         ? "Pick a chocolate and discover your fortune!"
         : "맛있는 초콜릿을 뽑아 오늘의 운세를 확인해보세요!",
-      images: [`${baseUrl}/public/og-image.png`],
+      images: ["/images/og-image.png"],
     },
   };
 }

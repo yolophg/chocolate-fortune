@@ -13,6 +13,7 @@ export const translations = {
       copyLink: "링크 복사",
       close: "닫기",
       click: "클릭!",
+      tryMyFortune: "내 운세 뽑기",
     },
     share: {
       title: "공유하기",
@@ -32,6 +33,9 @@ export const translations = {
     fortune: {
       shareTitle: "초콜릿 운세 결과",
     },
+    result: {
+      shared: "나만의 초콜릿 운세를 뽑아보세요!",
+    },
   },
   en: {
     title: "Chocolate Fortune🕹",
@@ -47,6 +51,7 @@ export const translations = {
       copyLink: "Copy Link",
       close: "Close",
       click: "Click!",
+      tryMyFortune: "Try My Fortune",
     },
     share: {
       title: "Share via",
@@ -65,6 +70,9 @@ export const translations = {
     },
     fortune: {
       shareTitle: "Chocolate Fortune Result",
+    },
+    result: {
+      shared: "Draw your own chocolate fortune!",
     },
   },
 } as const;
