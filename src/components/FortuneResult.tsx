@@ -13,20 +13,43 @@ interface Props {
 
 export default function FortuneResult({ result, onReset, lang }: Props) {
   const handleShare = () => {
-    void (async () => {
-      const shareUrl = `${window.location.origin}/${lang}/result/${result.chocolate.id}`;
+    const shareUrl = `https://chocopick.space/${lang}/result/${result.chocolate.id}`;
 
+    void (async () => {
       try {
-        await navigator.share({
-          title: t(lang, "fortune.shareTitle"),
-          text: t(lang, "share.text", {
+        if (navigator.share) {
+          await navigator.share({
+            title: t(lang, "fortune.shareTitle"),
+            text: t(lang, "share.text", {
+              chocolateName: result.chocolate.name[lang],
+              fortune: result.fortune,
+            }),
+            url: shareUrl,
+          });
+        } else {
+          // Fallback: copy to clipboard
+          const shareText = `${t(lang, "share.text", {
             chocolateName: result.chocolate.name[lang],
             fortune: result.fortune,
-          }),
-          url: shareUrl,
-        });
+          })}\n\n${shareUrl}`;
+
+          await navigator.clipboard.writeText(shareText);
+          alert(t(lang, "share.copied"));
+        }
       } catch (error) {
-        console.log("Error sharing:", error);
+        console.error("Sharing failed:", error);
+        // copy to clipboard fallback
+        try {
+          const shareText = `${t(lang, "share.text", {
+            chocolateName: result.chocolate.name[lang],
+            fortune: result.fortune,
+          })}\n\n${shareUrl}`;
+
+          await navigator.clipboard.writeText(shareText);
+          alert(t(lang, "share.copied"));
+        } catch (clipboardError) {
+          console.error("Clipboard copy failed:", clipboardError);
+        }
       }
     })();
   };

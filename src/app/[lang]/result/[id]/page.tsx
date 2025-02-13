@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: ResultPageProps) {
     return {};
   }
 
-  const title = lang === "en" ? chocolate.name.en : chocolate.name.ko;
+  const title = `${lang === "en" ? chocolate.name.en : chocolate.name.ko}`;
   const description = t(lang as "ko" | "en", "result.shared");
 
   return {
@@ -69,8 +69,10 @@ export default async function ResultPage({ params }: ResultPageProps) {
         <h2 className='text-xl sm:text-2xl font-content font-bold text-[#4E342E] mb-3 sm:mb-4 text-center'>
           {lang === "en" ? chocolate.name.en : chocolate.name.ko}
         </h2>
-        <p className='text-base sm:text-lg font-content mb-4 sm:mb-6 text-[#A67B5B] text-center'>
+        <p className='text-base sm:text-lg font-content mb-4 sm:mb-6 text-[#A67B5B] text-center whitespace-pre-line'>
           {t(lang as "ko" | "en", "result.shared")}
+          {"\n\n"}
+          {`https://chocopick.space/${lang}/result/${id}`}
         </p>
         <div className='flex justify-center'>
           <Link

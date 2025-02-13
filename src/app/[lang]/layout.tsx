@@ -31,13 +31,13 @@ export async function generateMetadata({
   return {
     title: isEn ? "Chocolate Fortune🍫" : "초콜릿 운세 뽑기🍫",
     description: isEn
-      ? "Pick a chocolate and discover your fortune!"
+      ? "Draw a chocolate and discover your fortune!"
       : "맛있는 초콜릿을 뽑아 오늘의 운세를 확인해보세요!",
     metadataBase: new URL(baseUrl),
     openGraph: {
       title: isEn ? "Chocolate Fortune🍫" : "초콜릿 운세 뽑기🍫",
       description: isEn
-        ? "Pick a chocolate and discover your fortune!"
+        ? "Draw a chocolate and discover your fortune!"
         : "맛있는 초콜릿을 뽑아 오늘의 운세를 확인해보세요!",
       type: "website",
       url: `${baseUrl}/${resolvedParams.lang}`,
@@ -55,7 +55,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: isEn ? "Chocolate Fortune🍫" : "초콜릿 운세 뽑기🍫",
       description: isEn
-        ? "Pick a chocolate and discover your fortune!"
+        ? "Draw a chocolate and discover your fortune!"
         : "맛있는 초콜릿을 뽑아 오늘의 운세를 확인해보세요!",
       images: ["/images/og-image.png"],
     },

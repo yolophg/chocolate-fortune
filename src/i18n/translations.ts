@@ -36,6 +36,7 @@ export const translations = {
     result: {
       shared: "나만의 초콜릿 운세를 뽑아보세요!",
     },
+    "share.copied": "링크가 복사되었습니다",
   },
   en: {
     title: "Chocolate Fortune🕹",
@@ -74,6 +75,7 @@ export const translations = {
     result: {
       shared: "Draw your own chocolate fortune!",
     },
+    "share.copied": "Link copied to clipboard",
   },
 } as const;
 
