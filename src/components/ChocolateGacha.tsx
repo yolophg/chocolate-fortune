@@ -218,21 +218,23 @@ export default function ChocolateGacha({
         disabled={isSpinning}
       >
         {/* pulsing arrow indicator */}
-        <motion.div
-          className='absolute -top-8 left-1/2 -translate-x-1/2'
-          initial={{ opacity: 0.5, y: -5 }}
-          animate={{
-            opacity: [0.5, 1, 0.5],
-            y: [-5, 0, -5],
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <div className='text-[#FFD700] text-2xl sm:text-3xl'>↓</div>
-        </motion.div>
+        {!isSpinning && (
+          <motion.div
+            className='absolute -top-8 left-[calc(50%-7px)] -translate-x-1/2'
+            initial={{ opacity: 0.5, y: -5 }}
+            animate={{
+              opacity: [0.5, 1, 0.5],
+              y: [-5, 0, -5],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <div className='text-[#FFD700] text-2xl sm:text-3xl'>↓</div>
+          </motion.div>
+        )}
 
         {/* "Click" tex t with glow effect */}
         <div
@@ -266,6 +268,67 @@ export default function ChocolateGacha({
           <div className='absolute -top-2 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#4E342E]' />
         </div>
       </motion.button>
+
+      {/* generating indicator */}
+      {isSpinning && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className='absolute top-[170px] sm:top-[220px] left-1/2 -translate-x-1/2 w-full text-center'
+        >
+          <div className='flex items-center justify-center gap-1.5 mb-2'>
+            <motion.div
+              className='w-2 h-2 rounded-full bg-[#FFD700]'
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [1, 0.5, 1],
+              }}
+              transition={{
+                duration: 1,
+                repeat: Infinity,
+                delay: 0,
+              }}
+            />
+            <motion.div
+              className='w-2 h-2 rounded-full bg-[#FFD700]'
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [1, 0.5, 1],
+              }}
+              transition={{
+                duration: 1,
+                repeat: Infinity,
+                delay: 0.3,
+              }}
+            />
+            <motion.div
+              className='w-2 h-2 rounded-full bg-[#FFD700]'
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [1, 0.5, 1],
+              }}
+              transition={{
+                duration: 1,
+                repeat: Infinity,
+                delay: 0.6,
+              }}
+            />
+          </div>
+          <motion.div
+            className='text-[#FFD700] text-xs sm:text-sm font-bold font-content drop-shadow-[0_0_8px_rgba(255,215,0,0.6)]'
+            animate={{
+              opacity: [1, 0.5, 1],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            {t(lang, "loading.fortune")}
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   );
 }

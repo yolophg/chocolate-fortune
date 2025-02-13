@@ -23,6 +23,9 @@ export const translations = {
       ko: "한국어",
       en: "영어",
     },
+    loading: {
+      fortune: "AI가 운세를 분석중...",
+    },
     alert: {
       copySuccess: "링크가 복사되었습니다",
       copyError: "링크 복사에 실패했습니다",
@@ -61,6 +64,9 @@ export const translations = {
     language: {
       ko: "Korean",
       en: "English",
+    },
+    loading: {
+      fortune: "AI analyzing fortune...",
     },
     alert: {
       copySuccess: "Link copied to clipboard",
