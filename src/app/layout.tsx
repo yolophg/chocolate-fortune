@@ -17,8 +17,8 @@ export default function RootLayout({
       <body>{children}</body>
 
       {/* Google Analytics */}
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-74YY9TRJLR"></Script>
-      <Script dangerouslySetInnerHTML={{
+      <Script id="google-analytics-script" async src="https://www.googletagmanager.com/gtag/js?id=G-74YY9TRJLR"></Script>
+      <Script id="google-analytics-init" dangerouslySetInnerHTML={{
         __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
