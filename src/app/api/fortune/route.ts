@@ -15,10 +15,23 @@ export async function POST(request: Request) {
     const { chocolateId, lang: requestLang } = body;
     lang = requestLang;
 
-    const chocolate = chocolates.find((c) => c.id === chocolateId);
-    if (!chocolate) throw new Error("Chocolate not found");
+    console.log('Request received:', { chocolateId, lang });
 
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const chocolate = chocolates.find((c) => c.id === chocolateId);
+    if (!chocolate) {
+      console.log('Chocolate not found:', chocolateId);
+      throw new Error("Chocolate not found");
+    }
+
+    const model = genAI.getGenerativeModel({ 
+      model: "gemini-1.5-flash-8b"
+    });
+    console.log('Gemini model initialized');
+
+    console.log('Generating prompt for:', { 
+      chocolateName: chocolate.name[lang],
+      chocolateDesc: chocolate.description[lang] 
+    });
 
     const prompt =
       lang === "ko"
@@ -48,7 +61,12 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ fortune, chocolate });
   } catch (error) {
-    console.error("Fortune generation failed:", error);
+    console.error("Fortune generation failed:", {
+      error,
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined
+    });
+    
     return NextResponse.json(
       {
         error:
